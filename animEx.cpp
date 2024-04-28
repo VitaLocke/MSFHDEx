@@ -294,17 +294,15 @@ bool splitFiles(const char* cFilename)
 		vector<rectImgHelper> rih;
 		int k = 0;
 		//Loop per rectImg
-		if (rcImgs.size() > 0) {
-			for(int j = 0; j < rcImgs.size()-1; j++)
+		for(int j = 0; j < rcImgs.size()-1; j++)
+		{
+			//Pull all rects in from this image
+			for(; k < rcImgs[j+1].rectStart; k++)
 			{
-				//Pull all rects in from this image
-				for(; k < rcImgs[j+1].rectStart; k++)
-				{
-					rectImgHelper help;
-					help.img = rcImgs[j].img;
-					help.rc = fiRect[k];
-					rih.push_back(help);
-				}
+				rectImgHelper help;
+				help.img = rcImgs[j].img;
+				help.rc = fiRect[k];
+				rih.push_back(help);
 			}
 		}
 		
